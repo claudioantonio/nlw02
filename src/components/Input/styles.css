@@ -1,0 +1,51 @@
+.input-block {
+    position: relative;
+}
+
+/*
+O + significa que queremos pegar o input-block depois do primeiro
+Isso evita que tenhamos que usar first child
+*/
+.input-block + .inputblock {
+    margin-top: 1.4rem;
+}
+
+.input-block label {
+    font-size: 1.4rem;
+}
+
+.input-block input {
+    width: 100%;
+    height: 5.6rem;
+    margin-top: 0.8rem;
+    border-radius: 0.8rem;
+    background: var(--color-input-background);
+    border: 1px solid var(--color-line-in-white);
+    outline: 0;
+    padding: 0 1.6rem;
+    font: 1.6rem Archivo;
+}
+
+/*
+focus-within é uma pseudo-classe porque queremos aplicar um estilo 
+no input-block quando o foco estiver em um input, o que é diferente
+de mudar o estilo do próprio input quando ele está com foco.
+
+Além disso, estamos usando o after para inserir um elemento no 
+input-block quando o input estiver com foco.
+*/
+.input-block:focus-within::after {
+    width: calc(100% - 3.2rem);
+    height: 2px;
+    /*
+    O content é obrigatório sempre que se usa after e before
+    É será colocado vazio porque sem isso, nada será exibido
+    */
+    content: '';
+    background: var(--color-primary-light);
+    position: absolute;
+    /* somados dá os 3.2rem mencionados acima */
+    left: 1.6rem;
+    right: 1.6rem;
+    bottom: 0;   
+}
