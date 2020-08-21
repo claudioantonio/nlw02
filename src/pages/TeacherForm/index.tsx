@@ -188,6 +188,10 @@ function TeacherForm() {
                                     value={scheduleItem.to}
                                     onChange={e=> setScheduleItemValue(index,'to',e.target.value)}
                                     />
+                                
+                                    <button type="button">
+                                      [-]
+                                    </button>
                                 </div>
                         );
                     })}
