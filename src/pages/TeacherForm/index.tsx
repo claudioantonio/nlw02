@@ -6,6 +6,7 @@ import Textarea from '../../components/Textarea';
 import Select from '../../components/Select';
 
 import warningIcon from '../../assets/images/icons/warning.svg';
+import removeIcon from '../../assets/images/icons/trash.svg';
 
 import './styles.css';
 import api from '../../services/api';
@@ -26,6 +27,13 @@ function TeacherForm() {
     const [scheduleItems,setScheduleItems] = useState([
         {week_day: 0, from: '', to: ''},
     ]);
+
+    function removeScheduleItem(position:number) {
+        const newScheduleItems = scheduleItems.filter((item, index, array) => {
+            return (index!==position);
+        });
+        setScheduleItems(newScheduleItems);
+    }
 
     // Um objeto sendo observado por state não pode ser alterado diretamente
     // para garantir imutabilidade. Por isso, chamamos a função definida
@@ -189,8 +197,8 @@ function TeacherForm() {
                                     onChange={e=> setScheduleItemValue(index,'to',e.target.value)}
                                     />
                                 
-                                    <button type="button">
-                                      [-]
+                                    <button type="button" onClick={()=>removeScheduleItem(index)}>
+                                      <img src={removeIcon} alt="Remover"></img>
                                     </button>
                                 </div>
                         );
