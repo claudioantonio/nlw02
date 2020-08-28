@@ -30,6 +30,11 @@ function TeacherForm() {
     ]);
 
     function removeScheduleItem(position:number) {
+        // Não é permitido remover o único item
+        if (scheduleItems.length===1) {
+            return;
+        }
+
         const newScheduleItems = scheduleItems.filter((item, index, array) => {
             return (index!==position);
         });
