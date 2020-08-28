@@ -22,6 +22,7 @@ function TeacherForm() {
     const [subject,setSubject] = useState('');
     const [cost,setCost] = useState('');
 
+    const emptyScheduleItem = {week_day: 0, from: '', to: ''};
 
     // useState retorna um array. Abaixo usamos desconstrução deste array
     const [scheduleItems,setScheduleItems] = useState([
@@ -39,12 +40,23 @@ function TeacherForm() {
     // para garantir imutabilidade. Por isso, chamamos a função definida
     // no useState passando um novo array.
     function addNewScheduleItem() {
+        if (!canAddNewScheduleItem()) {
+            return;
+        }
+
         const updatedScheduleItems = [
             ...scheduleItems,
             {week_day: 0, from: '', to: ''}
         ];
         
         setScheduleItems(updatedScheduleItems);
+    }
+
+    function canAddNewScheduleItem() {
+        const exists = scheduleItems.find((item)=>
+            JSON.stringify(item) === JSON.stringify(emptyScheduleItem)
+        );
+        return !exists;
     }
 
     function setScheduleItemValue(position:number,field:string,value:string){
