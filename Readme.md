@@ -5,3 +5,6 @@ Selected JS references
 
 Selected React references
 - https://www.robinwieruch.de/react-state-array-add-update-remove
+
+Other references
+- https://walkingtree.tech/detailed-guide-securing-react-applications-keycloak/
